@@ -1,23 +1,26 @@
 GoodbyeDPI — Модификация от KetaruCorp
 =========================
 
+[x]
+
 Это программное обеспечение предназначено для обхода систем глубокой проверки пакетов, используемых многими интернет-провайдерами, которые блокируют доступ к определенным веб-сайтам.
 
-It handles DPI connected using optical splitter or port mirroring (**Passive DPI**) which do not block any data but just replying faster than requested destination, and **Active DPI** connected in sequence.
+Он обрабатывает DPI, подключенный с помощью оптического разветвителя или зеркалирования портов (**Пассивный DPI**), который не блокирует какие-либо данные, а просто отвечает быстрее, чем запрошенный пункт назначения, и **Активный DPI**, подключенный последовательно.
 
-**Windows 7, 8, 8.1, 10 or 11** with administrator privileges required.
+# Особенности модификации
+<ul>
+ <li>[x] Расширенный обход ютуб замедления</li>
+ <li>[ ] Обход замедления Discord</li>
+</ul>
 
-# Quick start
+**Windows 7, 8, 8.1, 10 or 11** с необходимыми правами администратора.
 
-* **For Russia**: Download [latest version from Releases page](https://github.com/ValdikSS/GoodbyeDPI/releases), unpack the file and run **1_russia_blacklist_dnsredir.cmd** script.
-* For other countries: Download [latest version from Releases page](https://github.com/ValdikSS/GoodbyeDPI/releases), unpack the file and run **2_any_country_dnsredir.cmd**.
+# Быстрый старт
 
-These scripts launch GoodbyeDPI in recommended mode with DNS resolver redirection to Yandex DNS on non-standard port (to prevent DNS poisoning).  
-If it works — congratulations! You can use it as-is or configure further.
+* **Для России**: Скачать [последнюю версию со страницы «Релизы»](https://github.com/ValdikSS/GoodbyeDPI/releases), распакуйте файл и запустите **installer.cmd** Скрипт.
 
-# How to use
-
-Download [latest version from Releases page](https://github.com/ValdikSS/GoodbyeDPI/releases) and run.
+Эти скрипты запускают GoodbyeDPI в рекомендованном режиме с перенаправлением DNS-резольвера на DNS Яндекса на нестандартный порт (во избежание отравления DNS).  
+Если это работает — поздравляю! Вы можете использовать его как есть или настроить дальше.
 
 ```
 Usage: goodbyedpi.exe [OPTION...]
@@ -87,80 +90,54 @@ Modern modesets (more stable, more compatible, faster):
  Note: combination of --wrong-seq and --wrong-chksum generates two different fake packets.
 ```
 
-To check if your ISP's DPI could be circumvented, first make sure that your provider does not poison DNS answers by enabling "Secure DNS (DNS over HTTPS)" option in your browser.
+Чтобы проверить, можно ли обойти DPI вашего интернет-провайдера, сначала убедитесь, что ваш провайдер не искажает ответы DNS, включив опцию «Безопасный DNS (DNS через HTTPS)» в вашем браузере.
 
-* **Chrome**: Settings → [Privacy and security](chrome://settings/security) → Use secure DNS → With: NextDNS
-* **Firefox**: [Settings](about:preferences) → Network Settings → Enable DNS over HTTPS → Use provider: NextDNS
+***Chrome**: Настройки → [Конфиденциальность и безопасность](chrome://settings/security) → Использовать безопасный DNS → С помощью: NextDNS.
+***Firefox**: [Настройки](about:preferences) → Настройки сети → Включить DNS через HTTPS → Использовать провайдера: NextDNS.
 
-Then run the `goodbyedpi.exe` executable without any options. If it works — congratulations! You can use it as-is or configure further, for example by using `--blacklist` option if the list of blocked websites is known and available for your country.
+Затем запустите `goodbyedpi.exe` исполняемый без каких-либо опций. Если это работает — поздравляю! Вы можете использовать его как есть или настроить дальше, например, с помощью `--blacklist` вариант, если список заблокированных веб-сайтов известен и доступен для вашей страны.
 
-If your provider intercepts DNS requests, you may want to use `--dns-addr` option to a public DNS resolver running on non-standard port (such as Yandex DNS `77.88.8.8:1253`) or configure DNS over HTTPS/TLS using third-party applications.
+Если ваш провайдер перехватывает DNS-запросы, вы можете использовать `--dns-addr` вариант общедоступного преобразователя DNS, работающего на нестандартном порту (например, Яндекс DNS `77.88.8.8:1253`) или настройте DNS через HTTPS/TLS с помощью сторонних приложений.
 
-Check the .cmd scripts and modify it according to your preference and network conditions.
+Проверьте сценарии .cmd и измените их в соответствии со своими предпочтениями и условиями сети.
 
-# How does it work
+# Как это работает
 
-### Passive DPI
+### Пассивный DPI
 
-Most Passive DPI send HTTP 302 Redirect if you try to access blocked website over HTTP and TCP Reset in case of HTTPS, faster than destination website. Packets sent by DPI usually have IP Identification field equal to `0x0000` or `0x0001`, as seen with Russian providers. These packets, if they redirect you to another website (censorship page), are blocked by GoodbyeDPI.
+Большинство пассивных DPI отправляют перенаправление HTTP 302, если вы пытаетесь получить доступ к заблокированному веб-сайту через HTTP, и сброс TCP в случае HTTPS быстрее, чем целевой веб-сайт. Пакеты, отправляемые DPI, обычно имеют поле идентификации IP, равное`0x0000`Или`0x0001`, как это видно у российских провайдеров. Эти пакеты, если они перенаправляют вас на другой веб-сайт (страницу цензуры), блокируются GoodbyeDPI.
 
-### Active DPI
+### Активный DPI
 
-Active DPI is more tricky to fool. Currently the software uses 7 methods to circumvent Active DPI:
+Активный DPI сложнее обмануть. На данный момент программа использует 7 методов обхода Active DPI:
 
-* TCP-level fragmentation for first data packet
-* TCP-level fragmentation for persistent (keep-alive) HTTP sessions
-* Replacing `Host` header with `hoSt`
-* Removing space between header name and value in `Host` header
-* Adding additional space between HTTP Method (GET, POST etc) and URI
-* Mixing case of Host header value
-* Sending fake HTTP/HTTPS packets with low Time-To-Live value, incorrect checksum or incorrect TCP Sequence/Acknowledgement numbers to fool DPI and prevent delivering them to the destination
+* Фрагментация на уровне TCP для первого пакета данных
+* Фрагментация на уровне TCP для постоянных (поддерживающих активность) HTTP-сессий.
+* Замена `Host` заголовок с `hoSt`
+* Удаление пробела между именем и значением заголовка в `Host` Заголовок
+* Добавление дополнительного пространства между методом HTTP (GET, POST и т. д.) и URI.
+* Случай смешивания значения заголовка Host
+* Отправка поддельных пакетов HTTP/HTTPS с низким значением времени жизни, неправильной контрольной суммой или неверными номерами последовательности/подтверждения TCP, чтобы обмануть DPI и предотвратить их доставку по назначению.
 
-These methods should not break any website as they're fully compatible with TCP and HTTP standards, yet it's sufficient to prevent DPI data classification and to circumvent censorship. Additional space may break some websites, although it's acceptable by HTTP/1.1 specification (see 19.3 Tolerant Applications).
+Эти методы не должны нарушить работу любого веб-сайта, поскольку они полностью совместимы со стандартами TCP и HTTP, но при этом достаточны для предотвращения классификации данных DPI и обхода цензуры. Дополнительное пространство может привести к поломке некоторых веб-сайтов, хотя это приемлемо по спецификации HTTP/1.1 (см. 19.3 Толерантные приложения).
 
-The program loads WinDivert driver which uses Windows Filtering Platform to set filters and redirect packets to the userspace. It's running as long as console window is visible and terminates when you close the window.
+Программа загружает драйвер WinDivert, который использует платформу фильтрации Windows для установки фильтров и перенаправления пакетов в пространство пользователя. Он работает до тех пор, пока видно окно консоли, и завершается, когда вы закрываете окно.
 
-# How to build from source
+# Похожие проекты
 
-This project can be build using **GNU Make** and [**mingw**](https://mingw-w64.org). The only dependency is [WinDivert](https://github.com/basil00/Divert).
-
-To build x86 exe run:
-
-`make CPREFIX=i686-w64-mingw32- WINDIVERTHEADERS=/path/to/windivert/include WINDIVERTLIBS=/path/to/windivert/x86`
-
-And for x86_64:
-
-`make CPREFIX=x86_64-w64-mingw32- BIT64=1 WINDIVERTHEADERS=/path/to/windivert/include WINDIVERTLIBS=/path/to/windivert/amd64`
-
-# How to install as Windows Service
-
-Check examples in `service_install_russia_blacklist.cmd`, `service_install_russia_blacklist_dnsredir.cmd` and `service_remove.cmd` scripts.
-
-Modify them according to your own needs.
-
-# Known issues
-
-* Horribly outdated Windows 7 installations are not able to load WinDivert driver due to missing support for SHA256 digital signatures. Install KB3033929 [x86](https://www.microsoft.com/en-us/download/details.aspx?id=46078)/[x64](https://www.microsoft.com/en-us/download/details.aspx?id=46148), or better, update the whole system using Windows Update.
-* Intel/Qualcomm Killer network cards: `Advanced Stream Detect` in Killer Control Center is incompabitle with GoodbyeDPI, [disable it](https://github.com/ValdikSS/GoodbyeDPI/issues/541#issuecomment-2296038239).
-* ~~Some SSL/TLS stacks unable to process fragmented ClientHello packets, and HTTPS websites won't open. Bug: [#4](https://github.com/ValdikSS/GoodbyeDPI/issues/4), [#64](https://github.com/ValdikSS/GoodbyeDPI/issues/64).~~ Fragmentation issues are fixed in v0.1.7.
-* ~~ESET Antivirus is incompatible with WinDivert driver [#91](https://github.com/ValdikSS/GoodbyeDPI/issues/91). This is most probably antivirus bug, not WinDivert.~~
-
-
-# Similar projects
-
-- **[zapret](https://github.com/bol-van/zapret)** by @bol-van (for MacOS, Linux and Windows)
-- **[Green Tunnel](https://github.com/SadeghHayeri/GreenTunnel)** by @SadeghHayeri (for MacOS, Linux and Windows)
-- **[DPI Tunnel CLI](https://github.com/nomoresat/DPITunnel-cli)** by @zhenyolka (for Linux and routers)
-- **[DPI Tunnel for Android](https://github.com/nomoresat/DPITunnel-android)** by @zhenyolka (for Android)
-- **[PowerTunnel](https://github.com/krlvm/PowerTunnel)** by @krlvm (for Windows, MacOS and Linux)
-- **[PowerTunnel for Android](https://github.com/krlvm/PowerTunnel-Android)** by @krlvm (for Android)
-- **[SpoofDPI](https://github.com/xvzc/SpoofDPI)** by @xvzc (for macOS and Linux)
-- **[GhosTCP](https://github.com/macronut/ghostcp)** by @macronut (for Windows)
-- **[ByeDPI](https://github.com/hufrea/byedpi)** for Linux/Windows + **[ByeDPIAndroid](https://github.com/dovecoteescapee/ByeDPIAndroid/)** for Android (no root)
-- **[youtubeUnblock](https://github.com/Waujito/youtubeUnblock/)** by @Waujito (for OpenWRT/Entware routers and Linux)
+- **[zapret](https://github.com/bol-van/zapret)** от @bol-van (для MacOS, Linux и Windows)
+- **[Green Tunnel](https://github.com/SadeghHayeri/GreenTunnel)** от @SadeghHayeri (для MacOS, Linux и Windows)
+- **[DPI Tunnel CLI](https://github.com/nomoresat/DPITunnel-cli)** от @zhenyolka (для Linux и роутеров)
+- **[DPI Tunnel for Android](https://github.com/nomoresat/DPITunnel-android)** от @zhenyolka (для Android)
+- **[PowerTunnel](https://github.com/krlvm/PowerTunnel)** от @krlvm (для Windows, MacOS и Linux)
+- **[PowerTunnel for Android](https://github.com/krlvm/PowerTunnel-Android)** от @krlvm (для Android)
+- **[SpoofDPI](https://github.com/xvzc/SpoofDPI)** от @xvzc (для macOS и Linux)
+- **[GhosTCP](https://github.com/macronut/ghostcp)** от @macronut (для Windows)
+- **[ByeDPI](https://github.com/hufrea/byedpi)** для Linux/Windows + **[ByeDPIAndroid](https://github.com/dovecoteescapee/ByeDPIAndroid/)** для Android (без рута)
+- **[youtubeUnblock](https://github.com/Waujito/youtubeUnblock/)** от @Waujito (для маршрутизаторов OpenWRT/Entware и Linux)
 
 # Kudos
 
-Thanks @basil00 for [WinDivert](https://github.com/basil00/Divert). That's the main part of this program.
+Спасибо @basil00 за [WinDivert](https://github.com/basil00/Divert). Это основная часть этой программы.
 
-Thanks for every [BlockCheck](https://github.com/ValdikSS/blockcheck) contributor. It would be impossible to understand DPI behaviour without this utility.
+Спасибо всем участникам [BlockCheck](https://github.com/ValdikSS/blockcheck). Без этой утилиты было бы невозможно понять поведение DPI.
