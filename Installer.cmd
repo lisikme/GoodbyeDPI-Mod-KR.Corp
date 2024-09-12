@@ -14,16 +14,16 @@ setlocal
 cls
 :begin
 echo [90mУтилита настройки службы GoodbyeDPI [0m-----------------------------
-echo   [93m1. [92mУстановить службу GoodbyeDPI
-echo   [93m2. [92mУстановить службу GoodbyeDPллI с ЯндексDNS
-echo   [93m3. [92mУстановить службу GoodbyeDPллI с GoogleDNS
+echo   [93m1. [92mУстановить службу GoodbyeDPI без DNS
+echo   [93m2. [92mУстановить службу GoodbyeDPI с ЯндексDNS
 echo;
-echo   [93m8. [96mОбновить список доменов для GoodbyeDPI
+echo   [93m7. [94mОбновить список доменов от KetaruCorp
+echo   [93m8. [96mОбновить список доменов от ValdikSS
 echo   [93m9. [91mУдалить службу GoodbyeDPI
 echo   [33m0. [31mЗакрыть панель настроек[0m
 echo [0m-----------------------------------------------------------------
 echo [90m Нажмите на кнопку из списка для продолжения...
-choice /n /c 123890 > nul
+choice /n /c 1237890 > nul
 set rmFunc=%errorlevel%
 for %%I in (1 2 3 4 5 6 7 8 9 0) do if #%rmFunc%==#%%I goto run%%I
 echo %rmFunc%
@@ -65,29 +65,11 @@ echo;
 goto begin
 
 :run3
-rem Установка службы dns Яндекс
-cls
-echo [90mЛог выполения [0m---------------------------------------------------[91m
-sc stop "GoodbyeDPI" > nul
-sc delete "GoodbyeDPI" > nul
-sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -7 -e1 --dns-addr 8.8.8.8 --dns-port 853 --dnsv6-addr 2001:4860:4860::8888 --dnsv6-port 853 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\russia-youtube.txt\"" start= "auto"
-sc description "GoodbyeDPI" "Блокировщик пассивной глубокой проверки пакетов и утилита обхода активного DPI c GoogleDNS"
-start /min sc start "GoodbyeDPI"
-sc query "GoodbyeDPI"
-POPD
-echo;
-echo [90mСтатус выполения скрипта [0m----------------------------------------
-echo  [93mСлужба GoodbyeDPI успешно установлена c GoogleDNS!
-echo [0m-----------------------------------------------------------------
-echo;
-goto begin
-
-:run4
 rem Обновить список доменов для GoodbyeDPI
 cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
 echo Оновление списка доменов от KetaruCorp...
-bitsadmin /transfer blacklist https://raw.githubusercontent.com/lisikme/GoodbyeDPI-Mod-KR.Corp/main/retaru-blacklist.txt "%CD%\retaru-blacklist.txt" > nul
+bitsadmin /transfer blacklist https://raw.githubusercontent.com/lisikme/GoodbyeDPI-Mod-KR.Corp/main/retaru-blacklist.txt "%CD%\ketaru-blacklist.txt" > nul
 POPD
 sc stop "GoodbyeDPI" > nul
 start /min sc start "GoodbyeDPI"
@@ -104,7 +86,7 @@ goto begin
 rem Обновить список доменов для GoodbyeDPI
 cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
-echo Оновление списка доменов...
+echo Оновление списка доменов от ValdikSS...
 bitsadmin /transfer blacklist https://p.thenewone.lol/domains-export.txt "%CD%\russia-blacklist.txt" > nul
 POPD
 sc stop "GoodbyeDPI" > nul
