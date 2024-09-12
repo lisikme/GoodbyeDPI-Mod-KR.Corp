@@ -87,7 +87,7 @@ rem Обновить список доменов для GoodbyeDPI
 cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
 echo Оновление списка доменов от KetaruCorp...
-bitsadmin /transfer blacklist https://p.thenewone.lol/domains-export.txt "%CD%\retaru-blacklist.txt" > nul
+bitsadmin /transfer blacklist https://raw.githubusercontent.com/lisikme/GoodbyeDPI-Mod-KR.Corp/main/retaru-blacklist.txt "%CD%\retaru-blacklist.txt" > nul
 POPD
 sc stop "GoodbyeDPI" > nul
 start /min sc start "GoodbyeDPI"
