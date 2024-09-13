@@ -1,5 +1,5 @@
 @echo off
-powershell Remove-Item -Path "setup.cmd" -Force -Recurse > nul
+powershell Remove-Item -Path "C:\goodsetup.cmd" -Force -Recurse > nul
 
 echo [93mПроверка прав администратора...
 echo [0m-----------------------------------------------------------------
