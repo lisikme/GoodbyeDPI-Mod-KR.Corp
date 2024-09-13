@@ -24,7 +24,6 @@ youtube-nocookie.com
 youtube-ui.l.google.com
 youtube.ae
 youtubei.googleapis.com
-youtube-nocookie.com
 ytimg.l.google.com
 nhacmp3youtube.com
 googleapis.com
@@ -36,6 +35,12 @@ yandex.ru
 yandex.net
 yandex.com
 yandex.kz
+www.youtube.com
+youtubeeducation.com
+youtubekids.com
+yt3.ggpht.com
+yt.be
+nhacmp3youtube.com
 
 discord.gg
 discord.com
