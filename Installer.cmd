@@ -30,7 +30,7 @@ sc qdescription "GoodbyeDPI"
 echo [90mУтилита настройки службы GoodbyeDPI [0m-----------------------------
 echo   [93m1 - [92mУстановить службу GoodbyeDPI без DNS
 echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS
-echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS 3
+echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS 4
 echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS --
 echo;
 echo   [93m6 - [33mОбновить панель настроек службы GoodbyeDPI
@@ -83,7 +83,7 @@ cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
 sc stop "GoodbyeDPI" > nul
 sc delete "GoodbyeDPI" > nul
-sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -r -m -e2 -f1 --reverse-frag --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
+sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -1 -e1 -r -m -f1 --reverse-frag --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
 sc description "GoodbyeDPI" "Блокировщик пассивной глубокой проверки пакетов и утилита обхода активного DPI"
 start /min sc start "GoodbyeDPI"
 sc query "GoodbyeDPI"
@@ -100,7 +100,7 @@ cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
 sc stop "GoodbyeDPI" > nul
 sc delete "GoodbyeDPI" > nul
-sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -r -m -e2 -f1 --reverse-frag --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
+sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -1 -e1 -r -m -f1 --reverse-frag --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
 sc description "GoodbyeDPI" "Блокировщик пассивной глубокой проверки пакетов и утилита обхода активного DPI c ЯндексDNS"
 start /min sc start "GoodbyeDPI"
 sc query "GoodbyeDPI"
