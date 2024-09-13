@@ -23,6 +23,8 @@ set _arch=x86
 IF "%PROCESSOR_ARCHITECTURE%"=="AMD64" (set _arch=x86_64)
 IF DEFINED PROCESSOR_ARCHITEW6432 (set _arch=x86_64)
 setlocal
+echo [90mПровека установки службы GoodbyeDPI [0m------------------------------[91m
+sc qdescription "GoodbyeDPI"
 :begin
 echo [90mУтилита настройки службы GoodbyeDPI [0m-----------------------------
 echo   [93m1 - [92mУстановить службу GoodbyeDPI без DNS
@@ -130,7 +132,6 @@ sc stop "GoodbyeDPI" > nul
 sc delete "GoodbyeDPI" > nul
 sc query "GoodbyeDPI"
 POPD
-@REM cls
 echo [90mСтатус выполения скрипта [0m----------------------------------------
 echo  [93mСлужба GoodbyeDPI успешно удалена!
 echo [0m-----------------------------------------------------------------
