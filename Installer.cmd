@@ -30,7 +30,7 @@ sc qdescription "GoodbyeDPI"
 echo [90mУтилита настройки службы GoodbyeDPI [0m-----------------------------
 echo   [93m1 - [92mУстановить службу GoodbyeDPI без DNS
 echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS
-echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS 2
+echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS 3
 echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS --
 echo;
 echo   [93m6 - [33mОбновить панель настроек службы GoodbyeDPI
