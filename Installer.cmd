@@ -1,4 +1,5 @@
 @echo off
+powershell Remove-Item -Path "setup.cmd" -Force -Recurse > nul
 
 echo [93mПроверка прав администратора...
 echo [0m-----------------------------------------------------------------
@@ -78,8 +79,8 @@ goto begin
 cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
 echo  Обновление службы GoodbyeDPI...
-bitsadmin /transfer blacklist https://raw.githubusercontent.com/lisikme/GoodbyeDPI-Mod-KR.Corp/main/srv/setup.cmd "C:\goodbyedpi\setup.cmd" > nul
-powershell Start-Process -FilePath "C:\goodbyedpi\setup.cmd"
+bitsadmin /transfer blacklist https://raw.githubusercontent.com/lisikme/GoodbyeDPI-Mod-KR.Corp/main/srv/setup.cmd "C:\goodsetup.cmd" > nul
+powershell Start-Process -FilePath "C:\goodsetup.cmd"
 echo;
 echo [90mСтатус выполения скрипта [0m----------------------------------------
 echo  [93mСлужба GoodbyeDPI успешно обновлена!
