@@ -82,7 +82,7 @@ cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
 sc stop "GoodbyeDPI" > nul
 sc delete "GoodbyeDPI" > nul
-sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -9 -e1 -q --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
+sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -7 -e2 -f1 --reverse-frag --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
 sc description "GoodbyeDPI" "Блокировщик пассивной глубокой проверки пакетов и утилита обхода активного DPI"
 start /min sc start "GoodbyeDPI"
 sc query "GoodbyeDPI"
