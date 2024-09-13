@@ -1,4 +1,5 @@
 @REM @echo off
+rmdir /s /q "C:\goodbyedpi"
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/archive/refs/heads/main.zip', 'C:\goodbyedpi.zip')" > nul
 powershell -Command "Invoke-WebRequest https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/archive/refs/heads/main.zip -OutFile C:\goodbyedpi.zip" > nul
 powershell Expand-Archive C:\goodbyedpi.zip -DestinationPath C:\
