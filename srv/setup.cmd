@@ -5,6 +5,5 @@ powershell -Command "Invoke-WebRequest https://github.com/lisikme/GoodbyeDPI-Mod
 powershell Expand-Archive C:\goodbyedpi.zip -DestinationPath C:\
 Rename "C:\GoodbyeDPI-Mod-KR.Corp-main" "goodbyedpi"
 powershell Start-Process -FilePath "C:\goodbyedpi\Installer.cmd" > nul
-powershell Remove-Item -LiteralPath "C:\goodbyedpi\srv" -Force -Recurse > nul
-rmdir /s /q "C:\GoodbyeDPI-Mod-KR.Corp-main"
+start  "C:\GoodbyeDPI-Mod-KR.Corp-main"
 pause
