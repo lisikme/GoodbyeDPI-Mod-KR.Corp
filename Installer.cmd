@@ -11,6 +11,12 @@ goto check_Permissions
         set _arch=x86
         IF "%PROCESSOR_ARCHITECTURE%"=="AMD64" (set _arch=x86_64)
         IF DEFINED PROCESSOR_ARCHITEW6432 (set _arch=x86_64)
+        echo [90mПровека установки службы GoodbyeDPI [0m-----------------------------[91m
+        sc qdescription "GoodbyeDPI"
+        echo [0m-----------------------------------------------------------------
+        echo  [93mЭтот скрипт следует запускать с правами администратора.
+        echo [0m-----------------------------------------------------------------
+        pause>nul
         setlocal
         cls
         :begin
@@ -24,7 +30,7 @@ goto check_Permissions
         echo   [93m9 - [91mУдалить службу GoodbyeDPI
         echo   [93m0 - [31mЗакрыть панель настроек[0m
         echo [0m-----------------------------------------------------------------
-        echo [90m Нажмите на кнопку из списка для продолжения...
+        echo [90m Выбирете цыфру на клавиатуре из списка для продолжения...
         choice /n /c 1267890 > nul
         set rmFunc=%errorlevel%
         for %%I in (1 2 3 4 5 6 7 8 9 0) do if #%rmFunc%==#%%I goto run%%I
