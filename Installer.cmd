@@ -20,7 +20,6 @@ if %errorLevel% == 0 (
 
 echo;
 PUSHD "%~dp0"
-start /b powershell -command "&{$w=(get-host).ui.rawui;$w.buffersize=@{width=177;height=999};$w.windowsize=@{width=155;height=55};}"
 set _arch=x86
 IF "%PROCESSOR_ARCHITECTURE%"=="AMD64" (set _arch=x86_64)
 IF DEFINED PROCESSOR_ARCHITEW6432 (set _arch=x86_64)
@@ -31,6 +30,8 @@ sc qdescription "GoodbyeDPI"
 echo [90mУтилита настройки службы GoodbyeDPI [0m-----------------------------
 echo   [93m1 - [92mУстановить службу GoodbyeDPI без DNS
 echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS
+echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS 1
+echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS --
 echo;
 echo   [93m6 - [33mОбновить панель настроек службы GoodbyeDPI
 echo   [93m7 - [94mОбновить базу обхода от KetaruCorp
