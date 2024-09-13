@@ -1,5 +1,7 @@
 @echo off
+cd C:\goodbyedpi > nul
 powershell Remove-Item -Path "C:\goodsetup.cmd" -Force -Recurse > nul
+PUSHD "%~dp0"
 
 echo [93mПроверка прав администратора...
 echo [0m-----------------------------------------------------------------
