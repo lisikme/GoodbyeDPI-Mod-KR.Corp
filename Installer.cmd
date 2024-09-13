@@ -30,8 +30,8 @@ sc qdescription "GoodbyeDPI"
 echo [90mУтилита настройки службы GoodbyeDPI [0m-----------------------------
 echo   [93m1 - [92mУстановить службу GoodbyeDPI без DNS
 echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS
-echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS хуй вам а не youtube
-echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS --
+echo   [93m2 - [92mУстановить службу GoodbyeDPI без DNS (если не работает)
+echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS (если не работает)
 echo;
 echo   [93m6 - [33mОбновить панель настроек службы GoodbyeDPI
 echo   [93m7 - [94mОбновить базу обхода от KetaruCorp
@@ -83,7 +83,7 @@ cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
 sc stop "GoodbyeDPI" > nul
 sc delete "GoodbyeDPI" > nul
-sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -r -m -e2 -f1 --reverse-frag --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
+sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -e2 -f1 --reverse-frag --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
 sc description "GoodbyeDPI" "Блокировщик пассивной глубокой проверки пакетов и утилита обхода активного DPI"
 start /min sc start "GoodbyeDPI"
 sc query "GoodbyeDPI"
