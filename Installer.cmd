@@ -28,8 +28,8 @@ echo [90mПровека установки службы GoodbyeDPI [0m-----------------------------
 sc qdescription "GoodbyeDPI"
 :begin
 echo [90mНастройки службы GoodbyeDPI [0m-------------------------------------
-echo   [93m1 - [92mУстановить службу GoodbyeDPI (Univesal)
-echo   [93m2 - [92mУстановить службу GoodbyeDPI (Mod by KetaruCorp)
+echo   [93m1 - [92mУстановить службу GoodbyeDPI - [93mUnivesal
+echo   [93m2 - [92mУстановить службу GoodbyeDPI - [93mModify by KetaruCorp
 echo;
 echo   [93m5 - [33mОбновить панель настроек службы GoodbyeDPI
 echo   [93m6 - [92mLauncher GoodbyeDPI
