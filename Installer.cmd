@@ -110,7 +110,7 @@ goto begin
 :run5
 cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
-echo  Оновление бызы обхода блокировок от KetaruCorp...
+echo  Обновление базы обхода блокировок от KetaruCorp...
 bitsadmin /transfer blacklist https://raw.githubusercontent.com/lisikme/GoodbyeDPI-Mod-KRCorp/main/retaru-blacklist.txt "%CD%\ketaru-blacklist.txt" > nul
 POPD
 sc stop "GoodbyeDPI" > nul
@@ -119,7 +119,7 @@ sc query "GoodbyeDPI"
 POPD
 echo;
 echo [90mСтатус выполения скрипта [0m----------------------------------------
-echo  [93mБызы обхода блокировок от KetaruCorp успешно обновлены!
+echo  [93mБазы обхода блокировок от KetaruCorp успешно обновлены!
 echo [0m-----------------------------------------------------------------
 echo;
 goto begin
@@ -127,7 +127,7 @@ goto begin
 :run6
 cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
-echo  Оновление бызы обхода блокировок ValdikSS...
+echo  Обновление базы обхода блокировок ValdikSS...
 bitsadmin /transfer blacklist https://p.thenewone.lol/domains-export.txt "%CD%\russia-blacklist.txt" > nul
 POPD
 sc stop "GoodbyeDPI" > nul
@@ -136,7 +136,7 @@ sc query "GoodbyeDPI"
 POPD
 echo;
 echo [90mСтатус выполения скрипта [0m----------------------------------------
-echo  [93mБызы обхода блокировок от ValdikSS успешно обновлены!
+echo  [93mБазы обхода блокировок от ValdikSS успешно обновлены!
 echo [0m-----------------------------------------------------------------
 echo;
 goto begin
