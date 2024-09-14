@@ -83,7 +83,7 @@ cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
 echo  Обновление утилиты GoodbyeDPI...
 bitsadmin /transfer blacklist https://raw.githubusercontent.com/lisikme/GoodbyeDPI-Mod-KR.Corp/main/srv/setup.cmd "C:\goodsetup.cmd" > nul
-start powershell -command Start-Process -FilePath "C:\goodsetup.cmd"
+start cmd /k powershell -command Start-Process -FilePath "C:\goodsetup.cmd"
 exit
 goto begin
 
