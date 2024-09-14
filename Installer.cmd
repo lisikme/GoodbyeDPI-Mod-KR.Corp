@@ -50,7 +50,7 @@ sc stop "GoodbyeDPI" > nul
 sc delete "GoodbyeDPI" > nul
 @REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -7 -e1 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
 sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -f2 -e2 --reverse-frag --wrong-chksum --max-payload 1200 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
-sc description "GoodbyeDPI" "Блокировщик пассивной глубокой проверки пакетов и утилита обхода активного DPI"
+sc description "GoodbyeDPI" "Служба утилиты GoodbyeDPI для обхода пассивного и активного DPI провайдеров и обхода блокировок интернет сайтов."
 start /min sc start "GoodbyeDPI"
 sc query "GoodbyeDPI"
 POPD
@@ -68,7 +68,7 @@ sc stop "GoodbyeDPI" > nul
 sc delete "GoodbyeDPI" > nul
 @REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -7 -e1 --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
 sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -f2 -e2 --reverse-frag --wrong-chksum --max-payload 1200 --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
-sc description "GoodbyeDPI" "Блокировщик пассивной глубокой проверки пакетов и утилита обхода активного DPI c ЯндексDNS"
+sc description "GoodbyeDPI" "Служба утилиты GoodbyeDPI для обхода пассивного и активного DPI провайдеров и обхода блокировок интернет сайтов. c ЯндексDNS"
 start /min sc start "GoodbyeDPI"
 sc query "GoodbyeDPI"
 POPD
