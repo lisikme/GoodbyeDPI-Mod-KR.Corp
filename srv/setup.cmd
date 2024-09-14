@@ -1,4 +1,5 @@
 @echo off
+echo [93mЗагрузка последней версии...
 start C:\Windows\Temp\unlocker.exe "C:\goodbyedpi"
 certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/archive/refs/heads/main.zip" C:\Windows\Temp\goodbyedpi.zip > nul
 certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/raw/main/srv/Unlocker.exe" C:\Windows\Temp\unlocker.exe > nul
