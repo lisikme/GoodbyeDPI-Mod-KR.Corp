@@ -26,7 +26,7 @@ setlocal
 echo [90mПровека установки службы GoodbyeDPI [0m-----------------------------[91m
 sc qdescription "GoodbyeDPI"
 :begin
-echo [90mУтилита настройки службы GoodbyeDPI [0m-----------------------------
+echo [90mНастройки службы GoodbyeDPI [0m-----------------------------
 echo   [93m1 - [92mУстановить службу GoodbyeDPI без DNS
 echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS
 echo;
@@ -82,15 +82,15 @@ goto begin
 cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
 echo  Обновление утилиты GoodbyeDPI...
-start C:\Windows\Temp\unlocker.exe "C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main" 
+start C:\Windows\Temp\unlocker.exe "C:\Windows\Temp\GoodbyeDPI-Mod-KRCorp-main" 
 echo [93mЗагрузка последней версии...
 echo;
 echo [93m Скачивание репозитория c github...
-certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/archive/refs/heads/main.zip" C:\Windows\Temp\goodtemp.zip > nul
+certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/archive/refs/heads/main.zip" C:\Windows\Temp\goodtemp.zip > nul
 echo [93m распаковка архива...
 powershell Expand-Archive -Path C:\Windows\Temp\goodtemp.zip -DestinationPath C:\Windows\Temp\ -Force
 echo [93m Компеляция утилиты...
-move 'C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main' C:\goodbyedpi' /Y
+move /Y 'C:\Windows\Temp\GoodbyePI-Mod-KRCorp-main' C:\goodbyedpi'
 echo [93m Открытие утилиты...
 echo;
 echo [90mСтатус выполения скрипта [0m----------------------------------------
@@ -103,7 +103,7 @@ goto begin
 cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
 echo  Оновление бызы обхода блокировок от KetaruCorp...
-bitsadmin /transfer blacklist https://raw.githubusercontent.com/lisikme/GoodbyeDPI-Mod-KR.Corp/main/retaru-blacklist.txt "%CD%\ketaru-blacklist.txt" > nul
+bitsadmin /transfer blacklist https://raw.githubusercontent.com/lisikme/GoodbyeDPI-Mod-KRCorp/main/retaru-blacklist.txt "%CD%\ketaru-blacklist.txt" > nul
 POPD
 sc stop "GoodbyeDPI" > nul
 start /min sc start "GoodbyeDPI"
