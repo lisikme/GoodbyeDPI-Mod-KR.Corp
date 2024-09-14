@@ -82,11 +82,8 @@ goto begin
 cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
 echo  Обновление утилиты GoodbyeDPI...
-certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/raw/main/srv/Unlocker.exe" C:\Windows\Temp\unlocker.exe > nul
-echo [93m Скачивание утилиты для управления репозиторием c github...
 bitsadmin /transfer blacklist https://raw.githubusercontent.com/lisikme/GoodbyeDPI-Mod-KR.Corp/main/srv/setup.cmd "C:\goodsetup.cmd" > nul
-start cmd /k powershell Start-Process -FilePath "C:\goodsetup.cmd"
-start C:\Windows\Temp\unlocker.exe "C:\goodbyedpi"
+start powershell Start-Process -FilePath "C:\goodsetup.cmd"
 echo;
 echo [90mСтатус выполения скрипта [0m----------------------------------------
 echo  [93mСлужба GoodbyeDPI успешно обновлена!
