@@ -11,6 +11,7 @@ start cmd /k powershell Expand-Archive -Path C:\Windows\Temp\goodtemp.zip -Desti
 echo [93m Компеляция утилиты...
 start cmd /k powershell Move-Item -LiteralPath 'C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main' -Destination 'C:\goodbyedpi' -Force
 echo [93m Открытие утилиты...
+
 powershell Start-Process -FilePath "C:\goodbyedpi\Installer.cmd" > nul
 start cmd /k start C:\Windows\Temp\unlocker.exe "C:\Windows\Temp\goodtemp.zip" 
 pause 
