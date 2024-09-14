@@ -26,7 +26,7 @@ setlocal
 echo [90mПровека установки службы GoodbyeDPI [0m-----------------------------[91m
 sc qdescription "GoodbyeDPI"
 :begin
-echo [90mНастройки службы GoodbyeDPI [0m-----------------------------
+echo [90mНастройки службы GoodbyeDPI [0m-------------------------------------
 echo   [93m1 - [92mУстановить службу GoodbyeDPI без DNS
 echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS
 echo;
