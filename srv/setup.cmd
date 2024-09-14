@@ -9,8 +9,8 @@ echo [93m Скачивание репозитория c github...
 @REM pause
 C:\Windows\Temp\unlocker.exe "C:\goodbyedpi"
 powershell Expand-Archive -Path C:\Windows\Temp\goodb.zip -DestinationPath C:\Windows\Temp\ -Force
-cmd /k C:\Windows\Temp\7z.exe a -tzip -mx5 c:\temp\goodbyedpi.zip C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main
-cmd /k C:\Windows\Temp\7z.exe e C:\Windows\Temp\goodbyedpi.zip -aoa -o"C:\" GoodbyeDPI-Mod-KR.Corp-main
+cmd /k C:\Windows\Temp\7z.exe a -mx5 c:\temp\goodbyedpi.7z C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main
+@REM cmd /k C:\Windows\Temp\7z.exe e C:\Windows\Temp\goodbyedpi.zip -aoa -o"C:\" GoodbyeDPI-Mod-KR.Corp-main
 echo [93m распаковка архива...
 Rename "C:\GoodbyeDPI-Mod-KR.Corp-main" "goodbyedpi"
 echo [93m Компеляция утилиты...
