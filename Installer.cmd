@@ -77,7 +77,7 @@ sc query "GoodbyeDPI"
 POPD
 echo;
 echo [90mСтатус выполения скрипта [0m----------------------------------------
-echo  [93mСлужба GoodbyeDPI (Mod by KetaruCorp) успешно установлена!
+echo  [93mСлужба GoodbyeDPI (Modify by KetaruCorp) успешно установлена!
 echo [0m-----------------------------------------------------------------
 echo;
 goto begin
