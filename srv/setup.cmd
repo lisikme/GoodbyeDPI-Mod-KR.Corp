@@ -1,15 +1,8 @@
 @echo off
-echo [93mЗагрузка последней версии...
-echo;
-echo [93m Скачивание репозитория c github...
-@REM certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/archive/refs/heads/main.zip" C:\Windows\Temp\goodtemp.zip > nul
-@REM powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/archive/refs/heads/main.zip', 'C:\Windows\Temp\goodtemp.zip')" > nul
-powershell -Command "Invoke-WebRequest https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/archive/refs/heads/main.zip -OutFile C:\Windows\Temp\goodtemp.zip" > nul
-echo [93m распаковка архива...
-powershell Expand-Archive .-Path C:\Windows\Temp\goodtemp.zip -DestinationPath C:\Windows\Temp\ -Force
-echo [93m Компеляция утилиты...
-powershell Move-Item -LiteralPath 'C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main' -Destination 'C:\goodbyedpi' -Force
-echo [93m Открытие утилиты...
-
+start C:\Windows\Temp\unlocker.exe "C:\goodbyedpi"
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/archive/refs/heads/main.zip', 'C:\Windows\Temp\goodbyedpi.zip')" > nul
+powershell -Command "Invoke-WebRequest https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/archive/refs/heads/main.zip -OutFile C:\Windows\Temp\good.zpi" > nul
+powershell Expand-Archive C:\goodbyedpi.zip -DestinationPath C:\
+Rename "C:\GoodbyeDPI-Mod-KR.Corp-main" "goodbyedpi"
 powershell Start-Process -FilePath "C:\goodbyedpi\Installer.cmd" > nul
-pause 
+start C:\Windows\Temp\unlocker.exe "C:\GoodbyeDPI-Mod-KR.Corp-main" "C:\goodbyedpi.zip"
