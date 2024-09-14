@@ -30,14 +30,15 @@ echo [90mНастройки службы GoodbyeDPI [0m-------------------------------------
 echo   [93m1 - [92mУстановить службу GoodbyeDPI без DNS
 echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS
 echo;
-echo   [93m6 - [33mОбновить панель настроек службы GoodbyeDPI
-echo   [93m7 - [94mОбновить базу обхода от KetaruCorp
-echo   [93m8 - [96mОбновить базу обхода от ValdikSS
+echo   [93m5 - [33mОбновить панель настроек службы GoodbyeDPI
+echo   [93m6 - [94mОбновить базу обхода от KetaruCorp
+echo   [93m7 - [96mОбновить базу обхода от ValdikSS
+echo   [93m8 - [91mLauncher GoodbyeDPI
 echo   [93m9 - [91mУдалить службу GoodbyeDPI
 echo   [93m0 - [31mЗакрыть панель настроек службы GoodbyeDPI
 echo [0m---------------------------------------- [90m[[96mv2.7 [90m- [94m09.14.2024 17:47[90m]
 echo [90m Нажмите на кнопку из списка для продолжения...
-choice /n /c 1267890 > nul
+choice /n /c 12567890 > nul
 set rmFunc=%errorlevel%
 for %%I in (1 2 3 4 5 6 7 8 9 0) do if #%rmFunc%==#%%I goto run%%I
 echo %rmFunc%
@@ -90,6 +91,18 @@ exit
 :run4
 cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
+echo  Launcher GoodbyeDPI...
+echo;
+echo [90mСтатус выполения скрипта [0m----------------------------------------
+echo  [93mLauncher GoodbyeDPI запущен!
+echo [0m-----------------------------------------------------------------
+echo;
+START "H5" "E:\documents\GoodbyeDPI-Mod-KR.Corp\LauncherforGoodbyeDPI.lnk" > nul
+goto begin
+
+:run5
+cls
+echo [90mЛог выполения [0m---------------------------------------------------[91m
 echo  Оновление бызы обхода блокировок от KetaruCorp...
 bitsadmin /transfer blacklist https://raw.githubusercontent.com/lisikme/GoodbyeDPI-Mod-KRCorp/main/retaru-blacklist.txt "%CD%\ketaru-blacklist.txt" > nul
 POPD
@@ -104,7 +117,7 @@ echo [0m-----------------------------------------------------------------
 echo;
 goto begin
 
-:run5
+:run6
 cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
 echo  Оновление бызы обхода блокировок ValdikSS...
@@ -121,7 +134,7 @@ echo [0m-----------------------------------------------------------------
 echo;
 goto begin
 
-:run6
+:run7
 cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
 sc stop "GoodbyeDPI" > nul
