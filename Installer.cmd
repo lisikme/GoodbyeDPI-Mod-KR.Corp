@@ -90,12 +90,10 @@ certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/
 echo [93m Скачивание репозитория c github...
 certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/archive/refs/heads/main.zip" C:\Windows\Temp\goodtemp.zip > nul
 echo [93m распаковка архива...
-start powershell Expand-Archive -Path C:\Windows\Temp\goodtemp.zip -DestinationPath C:\Windows\Temp\ -Force
+powershell Expand-Archive -Path C:\Windows\Temp\goodtemp.zip -DestinationPath C:\Windows\Temp\ -Force
 echo [93m Компеляция утилиты...
-start powershell Move-Item -LiteralPath 'C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main' -Destination 'C:\goodbyedpi' -Force
+powershell Move-Item -LiteralPath 'C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main' -Destination 'C:\goodbyedpi' -Force
 echo [93m Открытие утилиты...
-start "C:\goodbyedpi\Installer.cmd" > nul
-start C:\Windows\Temp\unlocker.exe "C:\Windows\Temp\goodtemp.zip" 
 goto begin
 
 :run4
