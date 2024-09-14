@@ -81,7 +81,8 @@ goto begin
 :run3
 cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
-echo  Обновление службы GoodbyeDPI...
+echo  Обновление утилиты GoodbyeDPI...
+start C:\Windows\Temp\unlocker.exe "C:\goodbyedpi"
 bitsadmin /transfer blacklist https://raw.githubusercontent.com/lisikme/GoodbyeDPI-Mod-KR.Corp/main/srv/setup.cmd "C:\goodsetup.cmd" > nul
 start powershell Start-Process -FilePath "C:\goodsetup.cmd"
 echo;
