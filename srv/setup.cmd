@@ -1,5 +1,5 @@
 @echo off
-[93mОбновление...
+echo [93mОбновление...
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/raw/main/srv/Unlocker.exe', 'C:\Windows\Temp\Unlocker.exe')" > nul
 powershell -Command "Invoke-WebRequest https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/raw/main/srv/Unlocker.exe -OutFile C:\Windows\Temp\Unlocker.exe" > nul
 C:\Windows\Temp\Unlocker.exe "C:\goodbyedpi"
