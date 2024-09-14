@@ -1,6 +1,9 @@
 @echo off
 
-powershell Remove-Item C:\goodbyedpi -Recurse -Force
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/archive/refs/heads/main.zip', 'C:\Windows\Temp\goodtemp.zip')"
+powershell -Command "Invoke-WebRequest https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/archive/refs/heads/main.zip -OutFile C:\Windows\Temp\goodtemp.zip"
+cmd /k C:\Windows\Temp\Unlocker.exe "C:\goodbyedpi"
+
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/archive/refs/heads/main.zip', 'C:\Windows\Temp\goodtemp.zip')"
 powershell -Command "Invoke-WebRequest https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/archive/refs/heads/main.zip -OutFile C:\Windows\Temp\goodtemp.zip"
 
