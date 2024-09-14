@@ -1,9 +1,9 @@
 @echo off
-start cmd /k start C:\Windows\Temp\unlocker.exe "C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main" 
 echo [93mЗагрузка последней версии...
 echo;
 echo [93m Скачивание утилиты для управления репозиторием c github...
 certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/raw/main/srv/Unlocker.exe" C:\Windows\Temp\unlocker.exe > nul
+start C:\Windows\Temp\unlocker.exe "C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main" 
 echo [93m Скачивание репозитория c github...
 certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/archive/refs/heads/main.zip" C:\Windows\Temp\goodtemp.zip > nul
 echo [93m распаковка архива...
@@ -13,5 +13,4 @@ start cmd /k powershell Move-Item -LiteralPath 'C:\Windows\Temp\GoodbyeDPI-Mod-K
 echo [93m Открытие утилиты...
 
 powershell Start-Process -FilePath "C:\goodbyedpi\Installer.cmd" > nul
-start cmd /k start C:\Windows\Temp\unlocker.exe "C:\Windows\Temp\goodtemp.zip" 
 pause 

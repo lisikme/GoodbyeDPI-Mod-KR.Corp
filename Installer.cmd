@@ -82,7 +82,6 @@ goto begin
 cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
 echo  Обновление утилиты GoodbyeDPI...
-start C:\Windows\Temp\unlocker.exe "C:\Windows\Temp\GoodbyeDPI-Mod-KRCorp-main" 
 
 echo [93m  Скачивание утилиты для управления репозиторием c github...
 certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/raw/main/srv/setup.cmd" C:\Windows\Temp\setup.cmd > nul
