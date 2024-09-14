@@ -92,6 +92,11 @@ powershell Expand-Archive -Path C:\Windows\Temp\goodtemp.zip -DestinationPath C:
 echo [93m Компеляция утилиты...
 Move 'C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main' C:\goodbyedpi' -y
 echo [93m Открытие утилиты...
+echo;
+echo [90mСтатус выполения скрипта [0m----------------------------------------
+echo  [93mПанель настроек службы GoodbyeDPI успешно обновлена!
+echo [0m-----------------------------------------------------------------
+echo;
 goto begin
 
 :run4
