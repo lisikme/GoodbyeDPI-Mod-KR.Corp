@@ -82,7 +82,7 @@ goto begin
 cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
 echo  Обновление утилиты GoodbyeDPI...
-start start C:\Windows\Temp\unlocker.exe "C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main" 
+start C:\Windows\Temp\unlocker.exe "C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main" 
 echo [93mЗагрузка последней версии...
 echo;
 echo [93m Скачивание утилиты для управления репозиторием c github...
@@ -94,7 +94,7 @@ start powershell Expand-Archive -Path C:\Windows\Temp\goodtemp.zip -DestinationP
 echo [93m Компеляция утилиты...
 start powershell Move-Item -LiteralPath 'C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main' -Destination 'C:\goodbyedpi' -Force
 echo [93m Открытие утилиты...
-powershell Start-Process -FilePath "C:\goodbyedpi\Installer.cmd" > nul
+start "C:\goodbyedpi\Installer.cmd" > nul
 start C:\Windows\Temp\unlocker.exe "C:\Windows\Temp\goodtemp.zip" 
 goto begin
 
