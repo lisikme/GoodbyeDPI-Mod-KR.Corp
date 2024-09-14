@@ -1,6 +1,5 @@
 @echo off
 cd C:\goodbyedpi > nul
-powershell Remove-Item -Path "C:\goodsetup.cmd" -Force -Recurse > nul
 PUSHD "%~dp0"
 
 echo [93mПроверка прав администратора...
@@ -24,7 +23,7 @@ set _arch=x86
 IF "%PROCESSOR_ARCHITECTURE%"=="AMD64" (set _arch=x86_64)
 IF DEFINED PROCESSOR_ARCHITEW6432 (set _arch=x86_64)
 setlocal
-echo [90mПровека установки службы GoodbyeDPI [0m------------------------------[91m
+echo [90mПровека установки службы GoodbyeDPI [0m-----------------------------[91m
 sc qdescription "GoodbyeDPI"
 :begin
 echo [90mУтилита настройки службы GoodbyeDPI [0m-----------------------------
@@ -36,7 +35,7 @@ echo   [93m7 - [94mОбновить базу обхода от KetaruCorp
 echo   [93m8 - [96mОбновить базу обхода от ValdikSS
 echo   [93m9 - [91mУдалить службу GoodbyeDPI
 echo   [93m0 - [31mЗакрыть панель настроек службы GoodbyeDPI
-echo [0m-----------------------------------------------------------------
+echo [0m------------------------------------- [90m[[96mv2.7.3 [90m- [94m09.14.2024 14:47[90m]
 echo [90m Нажмите на кнопку из списка для продолжения...
 choice /n /c 1267890 > nul
 set rmFunc=%errorlevel%
@@ -49,7 +48,7 @@ echo [90mЛог выполения [0m---------------------------------------------------
 sc stop "GoodbyeDPI" > nul
 sc delete "GoodbyeDPI" > nul
 @REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -7 -e1 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
-sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -f2 -e2 --reverse-frag --wrong-chksum --max-payload 1200 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
+sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -p -r -s -f2 -e2 -m --reverse-frag --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
 sc description "GoodbyeDPI" "Служба утилиты GoodbyeDPI для обхода пассивного и активного DPI провайдеров и обхода блокировок интернет сайтов."
 start /min sc start "GoodbyeDPI"
 sc query "GoodbyeDPI"
@@ -67,7 +66,7 @@ echo [90mЛог выполения [0m---------------------------------------------------
 sc stop "GoodbyeDPI" > nul
 sc delete "GoodbyeDPI" > nul
 @REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -7 -e1 --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
-sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -f2 -e2 --reverse-frag --wrong-chksum --max-payload 1200 --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
+sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -p -r -s -f2 -e2 -m --reverse-frag --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
 sc description "GoodbyeDPI" "Служба утилиты GoodbyeDPI для обхода пассивного и активного DPI провайдеров и обхода блокировок интернет сайтов. c ЯндексDNS"
 start /min sc start "GoodbyeDPI"
 sc query "GoodbyeDPI"
