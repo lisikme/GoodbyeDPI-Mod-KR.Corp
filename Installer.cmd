@@ -85,7 +85,7 @@ echo  Обновление утилиты GoodbyeDPI...
 certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/raw/main/srv/Unlocker.exe" C:\Windows\Temp\unlocker.exe > nul
 echo [93m Скачивание утилиты для управления репозиторием c github...
 bitsadmin /transfer blacklist https://raw.githubusercontent.com/lisikme/GoodbyeDPI-Mod-KR.Corp/main/srv/setup.cmd "C:\goodsetup.cmd" > nul
-start powershell Start-Process -FilePath "C:\goodsetup.cmd"
+start cmd /k powershell Start-Process -FilePath "C:\goodsetup.cmd"
 start C:\Windows\Temp\unlocker.exe "C:\goodbyedpi"
 echo;
 echo [90mСтатус выполения скрипта [0m----------------------------------------
