@@ -82,7 +82,7 @@ goto begin
 cls
 echo [90mЛог выполения [0m---------------------------------------------------[91m
 echo  Обновление утилиты GoodbyeDPI...
-start cmd /k start C:\Windows\Temp\unlocker.exe "C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main" 
+start start C:\Windows\Temp\unlocker.exe "C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main" 
 echo [93mЗагрузка последней версии...
 echo;
 echo [93m Скачивание утилиты для управления репозиторием c github...
@@ -90,12 +90,12 @@ certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/
 echo [93m Скачивание репозитория c github...
 certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/archive/refs/heads/main.zip" C:\Windows\Temp\goodtemp.zip > nul
 echo [93m распаковка архива...
-start cmd /k powershell Expand-Archive -Path C:\Windows\Temp\goodtemp.zip -DestinationPath C:\Windows\Temp\ -Force
+start powershell Expand-Archive -Path C:\Windows\Temp\goodtemp.zip -DestinationPath C:\Windows\Temp\ -Force
 echo [93m Компеляция утилиты...
-start cmd /k powershell Move-Item -LiteralPath 'C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main' -Destination 'C:\goodbyedpi' -Force
+start powershell Move-Item -LiteralPath 'C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main' -Destination 'C:\goodbyedpi' -Force
 echo [93m Открытие утилиты...
 powershell Start-Process -FilePath "C:\goodbyedpi\Installer.cmd" > nul
-start cmd /k start C:\Windows\Temp\unlocker.exe "C:\Windows\Temp\goodtemp.zip" 
+start C:\Windows\Temp\unlocker.exe "C:\Windows\Temp\goodtemp.zip" 
 goto begin
 
 :run4
