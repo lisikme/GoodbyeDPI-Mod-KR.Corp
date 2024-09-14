@@ -28,8 +28,8 @@ echo [90mПровека установки службы GoodbyeDPI [0m-----------------------------
 sc qdescription "GoodbyeDPI"
 :begin
 echo [90mНастройки службы GoodbyeDPI [0m-------------------------------------
-echo   [93m1 - [92mУстановить службу GoodbyeDPI без DNS
-echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS
+echo   [93m1 - [92mУстановить службу GoodbyeDPI (Univesal)
+echo   [93m2 - [92mУстановить службу GoodbyeDPI (Mod by KetaruCorp)
 echo;
 echo   [93m5 - [33mОбновить панель настроек службы GoodbyeDPI
 echo   [93m6 - [92mLauncher GoodbyeDPI
@@ -71,7 +71,7 @@ sc delete "GoodbyeDPI" > nul
 @REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -7 -e1 --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
 @REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -p -r -s -f2 -e2 -m --reverse-frag --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
 sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -f 2 -e 2 --reverse-frag --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
-sc description "GoodbyeDPI" "Служба утилиты GoodbyeDPI для обхода пассивного и активного DPI провайдеров и обхода блокировок интернет сайтов. c ЯндексDNS"
+sc description "GoodbyeDPI" "Служба утилиты GoodbyeDPI для обхода пассивного и активного DPI провайдеров и обхода блокировок интернет сайтов. со спискаси"
 start /min sc start "GoodbyeDPI"
 sc query "GoodbyeDPI"
 POPD
