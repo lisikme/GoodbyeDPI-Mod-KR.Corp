@@ -1,20 +1,16 @@
 @echo off
 echo [93mЗагрузка последней версии...
 echo;
-certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/raw/main/srv/Unlocker.exe" C:\Windows\Temp\unlocker.exe > nul
-certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/raw/main/srv/7z.exe" C:\Windows\Temp\7z.exe > nul
 echo [93m Скачивание утилиты для управления репозиторием c github...
-certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/archive/refs/heads/main.zip" C:\Windows\Temp\goodb.zip > nul
+certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/raw/main/srv/Unlocker.exe" C:\Windows\Temp\unlocker.exe > nul
 echo [93m Скачивание репозитория c github...
-@REM pause
-C:\Windows\Temp\unlocker.exe "C:\goodbyedpi"
-powershell Expand-Archive -Path C:\Windows\Temp\goodb.zip -DestinationPath C:\Windows\Temp\ -Force
-cmd /k C:\Windows\Temp\7z.exe a -mx5 c:\temp\goodbyedpi.7z C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main
-@REM cmd /k C:\Windows\Temp\7z.exe e C:\Windows\Temp\goodbyedpi.zip -aoa -o"C:\" GoodbyeDPI-Mod-KR.Corp-main
+certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/archive/refs/heads/main.zip" C:\Windows\Temp\goodtemp.zip > nul
 echo [93m распаковка архива...
-Rename "C:\GoodbyeDPI-Mod-KR.Corp-main" "goodbyedpi"
+C:\Windows\Temp\unlocker.exe "C:\goodbyedpi"
+powershell Expand-Archive -Path C:\Windows\Temp\goodtemp.zip -DestinationPath C:\Windows\Temp\ -Force
 echo [93m Компеляция утилиты...
-powershell Start-Process -FilePath "C:\goodbyedpi\Installer.cmd" > nul
+powershell Move-Item -LiteralPath 'C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main' -Destination 'C:\goodbyedpi' -Force
 echo [93m Открытие утилиты...
-@REM start C:\Windows\Temp\unlocker.exe "C:\GoodbyeDPI-Mod-KR.Corp-main" "C:\Windows\Temp\goodbyedpi.zip" 
+powershell Start-Process -FilePath "C:\goodbyedpi\Installer.cmd" > nul
+start C:\Windows\Temp\unlocker.exe "C:\Windows\Temp\goodtemp.zip" 
 pause 
