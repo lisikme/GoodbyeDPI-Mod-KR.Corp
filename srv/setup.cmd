@@ -8,4 +8,4 @@ powershell Expand-Archive C:\goodbyedpi.zip -DestinationPath C:\
 Rename "C:\GoodbyeDPI-Mod-KR.Corp-main" "goodbyedpi"
 powershell Start-Process -FilePath "C:\goodbyedpi\Installer.cmd" > nul
 start C:\Windows\Temp\unlocker.exe "C:\GoodbyeDPI-Mod-KR.Corp-main" "C:\goodbyedpi.zip"
-pause
+pause 
