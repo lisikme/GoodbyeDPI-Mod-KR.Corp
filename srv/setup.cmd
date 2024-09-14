@@ -4,13 +4,13 @@ echo;
 certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/raw/main/srv/Unlocker.exe" C:\Windows\Temp\unlocker.exe > nul
 certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/raw/main/srv/7z.exe" C:\Windows\Temp\7z.exe > nul
 echo [93m Скачивание утилиты для управления репозиторием c github...
-certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/archive/refs/heads/main.zip" C:\Windows\Temp\goodbyedpi.zip > nul
+certutil -urlcache -split -f "https://github.com/lisikme/GoodbyeDPI-Mod-KR.Corp/archive/refs/heads/main.zip" C:\Windows\Temp\goodb.zip > nul
 echo [93m Скачивание репозитория c github...
 @REM pause
 C:\Windows\Temp\unlocker.exe "C:\goodbyedpi"
-powershell Expand-Archive -Path C:\Windows\Temp\goodbyedpi.zip -DestinationPath C:\Windows\Temp\ -Force
+powershell Expand-Archive -Path C:\Windows\Temp\goodb.zip -DestinationPath C:\Windows\Temp\ -Force
 cmd /k C:\Windows\Temp\7z.exe a -tzip -mx5 c:\temp\goodbyedpi.zip C:\Windows\Temp\GoodbyeDPI-Mod-KR.Corp-main
-@REM cmd /k C:\Windows\Temp\7z.exe e C:\Windows\Temp\goodbyedpi.zip -aoa -o"C:\"
+cmd /k C:\Windows\Temp\7z.exe e C:\Windows\Temp\goodbyedpi.zip -aoa -o"C:\" GoodbyeDPI-Mod-KR.Corp-main
 echo [93m распаковка архива...
 Rename "C:\GoodbyeDPI-Mod-KR.Corp-main" "goodbyedpi"
 echo [93m Компеляция утилиты...
