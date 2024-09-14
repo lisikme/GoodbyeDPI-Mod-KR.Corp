@@ -31,9 +31,9 @@ echo   [93m1 - [92mУстановить службу GoodbyeDPI без DNS
 echo   [93m2 - [92mУстановить службу GoodbyeDPI с ЯндексDNS
 echo;
 echo   [93m5 - [33mОбновить панель настроек службы GoodbyeDPI
-echo   [93m6 - [94mОбновить базу обхода от KetaruCorp
-echo   [93m7 - [96mОбновить базу обхода от ValdikSS
-echo   [93m8 - [91mLauncher GoodbyeDPI
+echo   [93m6 - [92mLauncher GoodbyeDPI
+echo   [93m7 - [94mОбновить базу обхода от KetaruCorp
+echo   [93m8 - [96mОбновить базу обхода от ValdikSS
 echo   [93m9 - [91mУдалить службу GoodbyeDPI
 echo   [93m0 - [31mЗакрыть панель настроек службы GoodbyeDPI
 echo [0m---------------------------------------- [90m[[96mv2.7 [90m- [94m09.14.2024 17:47[90m]
