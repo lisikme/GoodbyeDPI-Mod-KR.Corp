@@ -42,6 +42,11 @@ yt3.ggpht.com
 yt.be
 nhacmp3youtube.com
 
+youtubeembeddedplayer.googleapis.com
+youtube.googleapis.com
+yt-video-upload.l.google.com
+wide-youtube.l.google.com
+
 discord.gg
 discord.com
 discordapp.com
