@@ -51,7 +51,7 @@ sc stop "GoodbyeDPI" > nul
 sc delete "GoodbyeDPI" > nul
 @REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -7 -e1 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
 @REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -p -r -s -f2 -e2 -m --reverse-frag --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
-sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -f 2 -e 2 --native-frag --max-payload 1200 --fake-gen 5 --fake-from-hex 160301FFFF01FFFFFF0303594F5552204144564552544953454D454E542048455245202D202431302F6D6F000000000009000000050003000000" start= "auto"
+sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -f 2 -e 2 --native-frag --max-payload 1200 --fake-gen 5 --fake-from-hex 4c5f382f26580fe955d396ce57d93a5d37cb19f94daf3dec28be02cd8fca9c61149c1daeb6b11d45424db59e222e0a79aa9dd6f8cfdd9ce5671af9db95b68d8f4202a5671a7672f70ca725d8bff667b5" start= "auto"
 sc description "GoodbyeDPI" "Служба утилиты GoodbyeDPI для обхода блокировок интернет сайтов. - Univesal"
 start /min sc start "GoodbyeDPI"
 sc query "GoodbyeDPI"
@@ -70,7 +70,7 @@ sc stop "GoodbyeDPI" > nul
 sc delete "GoodbyeDPI" > nul
 @REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -7 -e1 --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
 @REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -p -r -s -f2 -e2 -m --reverse-frag --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
-sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -f 2 -e 2 --native-frag --max-payload 1200 --fake-gen 5 --fake-from-hex 160301FFFF01FFFFFF0303594F5552204144564552544953454D454E542048455245202D202431302F6D6F000000000009000000050003000000 --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
+sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -f 2 -e 2 --native-frag --max-payload 1200 --fake-gen 5 --fake-from-hex 4c5f382f26580fe955d396ce57d93a5d37cb19f94daf3dec28be02cd8fca9c61149c1daeb6b11d45424db59e222e0a79aa9dd6f8cfdd9ce5671af9db95b68d8f4202a5671a7672f70ca725d8bff667b5 --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
 sc description "GoodbyeDPI" "Служба утилиты GoodbyeDPI для обхода блокировок интернет сайтов. - Modify by KetaruCorp"
 start /min sc start "GoodbyeDPI"
 sc query "GoodbyeDPI"
