@@ -3,6 +3,11 @@ start /min sc start "GoodbyeDPI" > nul
 cd C:\goodbyedpi > nul
 PUSHD "%~dp0"
 
+@REM set hexgen = 5
+@REM set hex = 160301FFFF01FFFFFF0303594F5552204144564552544953454D454E542048455245202D202431302F6D6F000000000009000000050003000000
+set hexgen = 29
+set hex = 4e4e2156ccb0334129a8788a4ecc34c92c0ef786952596e39d42d3f4d57eb850f0dfd52da3ad7d9690b13e443013b971aa765321d3f746a5a8963f2e033878a3a7a1ffeb41fff60da6a13bbcf10100d52e2b0b5ca73081876be05c57e9a75ef8ef72d1467f85f8be1bb70bf376993367bdfa2c147a0327ca4a4400ab98ffd40809876e98df37c1604e7649743ab37675b663f0c4fc06c4b7c6553d2f1dab53b7f55ed753ed2576daceb3d498db83519140d98289d4fc1b9a181315243069a21eae1848390539c844dcdc0a6040f56e054f8fdeb45359c5d9efbb7c39545f20ce37145b1ed9ecd101d46e143d16c69e2226576f99f0f4fb86bc6316f911c576459b3539e14abe617126c7239c43439baa5375c0685b465773a3b094754edb65a2df9a
+
 echo [93mПроверка прав администратора...
 echo [0m-----------------------------------------------------------------
 net session >nul 2>&1
@@ -37,7 +42,7 @@ echo   [93m7 - [94mОбновить базу обхода от KetaruCorp
 echo   [93m8 - [96mОбновить базу обхода от ValdikSS
 echo   [93m9 - [91mУдалить службу GoodbyeDPI
 echo   [93m0 - [31mЗакрыть панель настроек службы GoodbyeDPI
-echo [0m---------------------------------------- [90m[[96mv2.9 [90m- [94m09.19.2024 02:20[90m]
+echo [0m----------------------------------------------------------------- [90m[[96mv24.9.1 [90m- [94m02:20[90m]
 echo [90m Нажмите на кнопку из списка для продолжения...
 choice /n /c 12567890 > nul
 set rmFunc=%errorlevel%
@@ -51,7 +56,7 @@ sc stop "GoodbyeDPI" > nul
 sc delete "GoodbyeDPI" > nul
 @REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -7 -e1 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
 @REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -p -r -s -f2 -e2 -m --reverse-frag --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
-sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -f 2 -e 2 --native-frag --max-payload 1200 --fake-gen 5 --fake-from-hex 4c5f382f26580fe955d396ce57d93a5d37cb19f94daf3dec28be02cd8fca9c61149c1daeb6b11d45424db59e222e0a79aa9dd6f8cfdd9ce5671af9db95b68d8f4202a5671a7672f70ca725d8bff667b5" start= "auto"
+sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -f 2 -e 2 --native-frag --max-payload 1200 --fake-gen %hexgen% --fake-from-hex %hex%" start= "auto"
 sc description "GoodbyeDPI" "Служба утилиты GoodbyeDPI для обхода блокировок интернет сайтов. - Univesal"
 start /min sc start "GoodbyeDPI"
 sc query "GoodbyeDPI"
@@ -70,7 +75,7 @@ sc stop "GoodbyeDPI" > nul
 sc delete "GoodbyeDPI" > nul
 @REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -7 -e1 --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
 @REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -p -r -s -f2 -e2 -m --reverse-frag --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
-sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -f 2 -e 2 --native-frag --max-payload 1200 --fake-gen 5 --fake-from-hex 4c5f382f26580fe955d396ce57d93a5d37cb19f94daf3dec28be02cd8fca9c61149c1daeb6b11d45424db59e222e0a79aa9dd6f8cfdd9ce5671af9db95b68d8f4202a5671a7672f70ca725d8bff667b5 --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
+sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -f 2 -e 2 --native-frag --max-payload 1200 --fake-gen %hexgen% --fake-from-hex %hex% --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
 sc description "GoodbyeDPI" "Служба утилиты GoodbyeDPI для обхода блокировок интернет сайтов. - Modify by KetaruCorp"
 start /min sc start "GoodbyeDPI"
 sc query "GoodbyeDPI"
