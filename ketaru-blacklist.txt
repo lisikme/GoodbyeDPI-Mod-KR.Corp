@@ -30,11 +30,6 @@ googleapis.com
 gstatic.com
 doubleclick.net
 googleads.g.doubleclick.net
-ya.ru
-yandex.ru
-yandex.net
-yandex.com
-yandex.kz
 www.youtube.com
 youtubeeducation.com
 youtubekids.com
@@ -46,16 +41,32 @@ youtube.googleapis.com
 yt-video-upload.l.google.com
 wide-youtube.l.google.com
 
+discordstatus.com
+discord.media
 discord.gg
 discord.com
-discordapp.com
-discord.media
 discordapp.net
+discordapp.com
 discordcdn.com
 discord.dev
 discord.new
 discord.gift
-discordstatus.com
+dis.gd
+discord.co
+gateway.discord.gg
+remote-auth-gateway.discord.gg
+discord-attachments-uploads-prd.storage.googleapis.com
+discord.co
+discord.com
+discord.design
+discord.gifts
+discord.store
+discord.tools
+discordmerch.com
+discordpartygames.com
+discord-activities.com
+discordactivities.com
+discordsays.com
 dis.gd
 discord.co
 
