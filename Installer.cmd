@@ -1,7 +1,7 @@
 @echo off
 
 powershell -command "&{(get-host).ui.rawui.windowsize=@{width=67;height=35};}" > nul
-set ver=24.9.2
+set ver=25.0.1
 title KR.Corp Tweaker DPI v%ver%
 cd C:\goodbyedpi > nul
 @REM start /min sc start "GoodbyeDPI" > nul
