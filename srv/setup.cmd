@@ -17,8 +17,8 @@ sc delete "AntiZapret" > nul
 del "%dir%\*.*" /f /q /s > nul
 set file=DPIapp.zip
 certutil -urlcache -split -f %update_link% %file%> NUL
-powershell -Command "(New-Object Net.WebClient).DownloadFile('%update_link%', '%dirtemp%\%file%')" > nul
-powershell -Command "Invoke-WebRequest %update_link% -OutFile %dirtemp%\%file%" > nul
+powershell -Command "(New-Object Net.WebClient).DownloadFile('%update_link%', '%file%')" > nul
+powershell -Command "Invoke-WebRequest %update_link% -OutFile %file%" > nul
 echo [93mРаспаковка файлов...
 powershell Expand-Archive %file% -DestinationPath %dir% -Force
 start %dir%\%folder%\Installer.cmd
