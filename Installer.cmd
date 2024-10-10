@@ -7,6 +7,8 @@ cd C:\goodbyedpi > nul
 @REM start /min sc start "GoodbyeDPI" > nul
 PUSHD "%~dp0"
 
+set dirtemp=%appdata%\KetaruCorp\download
+
 @REM set hexgen=5
 @REM set hex=160301FFFF01FFFFFF0303594F5552204144564552544953454D454E542048455245202D202431302F6D6F000000000009000000050003000000
 
@@ -316,9 +318,7 @@ echo [90m ─ Лог выполения  [90m───────────────────────────────────────────────
 echo  Обновление списка обхода блокировок для AntiZapret...
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/raw/main/srv/setup.cmd', 'C:\Windows\Temp\setup.cmd')" > nul
 powershell -Command "Invoke-WebRequest https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/raw/main/srv/setup.cmd -OutFile C:\Windows\Temp\setup.cmd" > nul
-powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/raw/main/srv/setup.lnk', 'C:\Windows\Temp\setup.lnk')" > nul
-powershell -Command "Invoke-WebRequest https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/raw/main/srv/setup.lnk -OutFile C:\Windows\Temp\setup.lnk" > nul
-START "Updater" "C:\Windows\Temp\setup.lnk" > nul
+START "Updater" "C:\Windows\Temp\setup.cmd" > nul
 exit
 echo;
 echo [90m┌─ [90mСтатус выполения [90m──────────────────────────────────────────────┐
