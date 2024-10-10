@@ -1,173 +1,329 @@
 @echo off
+
+powershell -command "&{(get-host).ui.rawui.windowsize=@{width=67;height=35};}" > nul
+set ver=24.9.2
+title KR.Corp Tweaker DPI v%ver%
 cd C:\goodbyedpi > nul
-start /min sc start "GoodbyeDPI" > nul
+@REM start /min sc start "GoodbyeDPI" > nul
 PUSHD "%~dp0"
 
-@REM set hexgen = 5
-@REM set hex = 160301FFFF01FFFFFF0303594F5552204144564552544953454D454E542048455245202D202431302F6D6F000000000009000000050003000000
-@REM set hexgen = 29
-@REM set hex = 4e4e2156ccb0334129a8788a4ecc34c92c0ef786952596e39d42d3f4d57eb850f0dfd52da3ad7d9690b13e443013b971aa765321d3f746a5a8963f2e033878a3a7a1ffeb41fff60da6a13bbcf10100d52e2b0b5ca73081876be05c57e9a75ef8ef72d1467f85f8be1bb70bf376993367bdfa2c147a0327ca4a4400ab98ffd40809876e98df37c1604e7649743ab37675b663f0c4fc06c4b7c6553d2f1dab53b7f55ed753ed2576daceb3d498db83519140d98289d4fc1b9a181315243069a21eae1848390539c844dcdc0a6040f56e054f8fdeb45359c5d9efbb7c39545f20ce37145b1ed9ecd101d46e143d16c69e2226576f99f0f4fb86bc6316f911c576459b3539e14abe617126c7239c43439baa5375c0685b465773a3b094754edb65a2df9a
-set hexgen = 5
-set hex = 160301FFFF01FFFFFF0303594F5552204144564552544953454D454E542048455245202D202431302F6D6F000000000009000000050003000000
+@REM set hexgen=5
+@REM set hex=160301FFFF01FFFFFF0303594F5552204144564552544953454D454E542048455245202D202431302F6D6F000000000009000000050003000000
 
-echo [93mПроверка прав администратора...
-echo [0m-----------------------------------------------------------------
+@REM set hexgen=29
+@REM set hex=4e4e2156ccb0334129a8788a4ecc34c92c0ef786952596e39d42d3f4d57eb850f0dfd52da3ad7d9690b13e443013b971aa765321d3f746a5a8963f2e033878a3a7a1ffeb41fff60da6a13bbcf10100d52e2b0b5ca73081876be05c57e9a75ef8ef72d1467f85f8be1bb70bf376993367bdfa2c147a0327ca4a4400ab98ffd40809876e98df37c1604e7649743ab37675b663f0c4fc06c4b7c6553d2f1dab53b7f55ed753ed2576daceb3d498db83519140d98289d4fc1b9a181315243069a21eae1848390539c844dcdc0a6040f56e054f8fdeb45359c5d9efbb7c39545f20ce37145b1ed9ecd101d46e143d16c69e2226576f99f0f4fb86bc6316f911c576459b3539e14abe617126c7239c43439baa5375c0685b465773a3b094754edb65a2df9a
+
+@REM set hexgen=5
+@REM set hex=160301FFFF01FFFFFF0303594F5552204144564552544953454D454E542048455245202D202431302F6D6F000000000009000000050003000000
+
+set hexgen=5
+set hex=1603030135010001310303424143facf5c983ac8ff20b819cfd634cbf5143c0005b2b8b142a6cd335012c220008969b6b387683dedb4114d466ca90be3212b2bde0c4f56261a9801
+
+set blacklist=--blacklist "%~dp0list-GoodbyeDPI.txt\" --blacklist "%~dp0.txt\"
+set GBDParam=-e1 --reverse-frag --wrong-chksum --fake-from-hex %hex% --fake-gen %hexgen% --set-ttl 3 -q %blacklist%
+set par_youtube=--fake-gen %hexgen% --fake-from-hex %hex% %blacklist%
+set AZParam=--wf-tcp=443-65535 --wf-udp=443-65535 ^
+--wf-tcp=443 --wf-udp=443,50000-65535 ^
+--filter-udp=443 --hostlist="%~dp0ketaru-AntiZapret.txt" --dpi-desync=fake --dpi-desync-udplen-increment=10 --dpi-desync-repeats=6 --dpi-desync-udplen-pattern=0xDEADBEEF --dpi-desync-fake-quic="%~dp0quic_initial_www_google_com.bin" --new ^
+--filter-udp=50000-65535 --dpi-desync=fake,tamper --dpi-desync-any-protocol --dpi-desync-fake-quic="%~dp0quic_initial_www_google_com.bin" --new ^
+--filter-tcp=443 --hostlist="%~dp0ketaru-AntiZapret.txt" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --dpi-desync-fake-tls="%~dp0tls_clienthello_www_google_com.bin"
+
+@REM -5 -e 1 --reverse-frag --wrong-chksum --fake-from-hex 1603030135010001310303424143facf5c983ac8ff20b819cfd634cbf5143c0005b2b8b142a6cd335012c220008969b6b387683dedb4114d466ca90be3212b2bde0c4f56261a9801 --fake-gen 5 --set-ttl 3 -q
+
 net session >nul 2>&1
 if %errorLevel% == 0 (
-    echo  Успех: [92mПрава администратора получены.[0m
-    echo [0m-----------------------------------------------------------------
+    echo [90m ─────────────────────────────────────────────────────────────────
+    echo [93m  Успех: [92mПрава администратора получены.[0m
+    echo [90m ─────────────────────────────────────────────────────────────────
 ) else (
+    echo [90m ─────────────────────────────────────────────────────────────────
     echo  Ошибка: [91mПрава администратора не получены.[0m
-    echo [0m-----------------------------------------------------------------
+    echo [90m ─────────────────────────────────────────────────────────────────
     echo;
-    echo [90mВы должны открыть этот скрипт от имени администратора
-    echo [90mили вы можете открыть без прав администратора
-    echo [90mно некторые функции могут работать негоректно!
-    pause > nul
-)
+    echo [90mУтилита работает только от имени администратора
+    where wt && (
+        @REM cmd /c wt --title "KR.Corp Tweaker DPI v%ver%" --suppressApplicationTitle --tabColor #ff555555 "%0" & exit
+        powershell -Command "Start-Process -Verb RunAs -FilePath '%0' -ArgumentList 'am_admin'" > nul
+        exit
+    ) || (
+        powershell -Command "Start-Process -Verb RunAs -FilePath '%0' -ArgumentList 'am_admin'" > nul
+        exit
+    )
 
+)
 echo;
 PUSHD "%~dp0"
 set _arch=x86
 IF "%PROCESSOR_ARCHITECTURE%"=="AMD64" (set _arch=x86_64)
 IF DEFINED PROCESSOR_ARCHITEW6432 (set _arch=x86_64)
 setlocal
-echo [90mПровека установки службы GoodbyeDPI [0m-----------------------------[91m
+echo [1m
+echo [90m ─ Провека установки служб [90m───────────────────────────────────────[91m
 sc qdescription "GoodbyeDPI"
+@REM start cmd /c "sc qc "GoodbyeDPI" & pause"
 :begin
-echo [90mНастройки службы GoodbyeDPI [0m------------------------------------- YouTube / Discord
-echo   [93m1 - [92mУстановить службу GoodbyeDPI - [93mUnivesal
-echo   [93m2 - [92mУстановить службу GoodbyeDPI - [93mModify by KetaruCorp
-echo;
-echo   [93m5 - [33mОбновить панель настроек службы GoodbyeDPI
-echo   [93m6 - [92mLauncher GoodbyeDPI
-echo   [93m7 - [94mОбновить базу обхода от KetaruCorp
-echo   [93m8 - [96mОбновить базу обхода от ValdikSS
-echo   [93m9 - [91mУдалить службу GoodbyeDPI
-echo   [93m0 - [31mЗакрыть панель настроек службы GoodbyeDPI
-echo [0m----------------------------------------------------------------- [90m[[96mv24.9.2 [90m- [94m02:20[90m]
-echo [90m Нажмите на кнопку из списка для продолжения...
-choice /n /c 12567890 > nul
+powershell -command "&{(get-host).ui.rawui.windowsize=@{width=67;height=45};}" > nul
+echo [90m┌─ [90mНастройки KR.Corp Tweaker DPI [90m─────────────────────────────────┐
+echo [90m│  [93m1 - [92mУстановить [93mAntiZapret[90m/[93mGoodbyeDPI [90m- [91mUltraPlus [33mАнтиРКН       [90m│
+echo [90m│  [93m2 - [92mУстановить [93mGoodbyeDPI            [90m- [96mYouTube [33mАнтиРКН         [90m│
+echo [90m│  [93m3 - [92mУстановить [93mAntiZapret            [90m- [96mDiscord [33mАнтиРКН         [90m│
+echo [90m│  [93m4 - [91mУдалить [93mGoodbyeDPI               [90m- [96mОтключение службы       [90m│
+echo [90m│  [93m5 - [91mУдалить [93mAntiZapret               [90m- [96mОтключение службы       [90m│
+echo [90m├─────────────────────────────────────────────────────────────────┤
+echo [90m│  [93m6 - [92mLauncher [93mGoodbyeDPI              [90m- [96mДоп Настройки           [90m│
+echo [90m│  [93m7 - [94mОбновить [93mсписок для AntiZapret   [90m- [96mСписок доменов          [90m│
+echo [90m│  [93m8 - [94mОбновить [93mсписок для GoodbyeDPI   [90m- [96mСписок доменов          [90m│
+echo [90m│  [93m9 - [36mОбновить [93mKR.Corp Tweaker DPI     [90m- [96mЗагрузка обновлений     [90m│
+echo [90m├─────────────────────────────────────────────────────────────────┤
+echo [90m│  [93m0 - [91mЗакрыть окно                                               [90m│
+echo [90m└─────────────────────────────────────────────────────────────────┘ 
+echo [90m Нажмите на любую цифру для настройки...    [90m[[96mv%ver% [90m- [94m10.10.2024[90m]
+choice /n /c 1234567890 > nul
 set rmFunc=%errorlevel%
 for %%I in (1 2 3 4 5 6 7 8 9 0) do if #%rmFunc%==#%%I goto run%%I
 echo %rmFunc%
-pause
+
+
+
+
+
 :run1
 cls
-echo [90mЛог выполения [0m---------------------------------------------------[91m
+    net session >nul 2>&1
+    if %errorLevel% == 0 (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo [93m  Успех: [92mПрава администратора получены.[0m
+    ) else (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo  Ошибка: [91mПрава администратора не получены.[0m
+    )
+echo [90m ─ Лог выполения  [90m────────────────────────────────────────────────[91m
 sc stop "GoodbyeDPI" > nul
+sc stop "AntiZapret" > nul
 sc delete "GoodbyeDPI" > nul
-sc stop "WinDivert" > nul
-sc delete "WinDivert" > nul
-@REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -7 -e1 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
-@REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -p -r -s -f2 -e2 -m --reverse-frag --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
-sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -9 -e1 -q --max-payload 1200 --fake-gen %hexgen% --fake-from-hex %hex%" start= "auto"
-@REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -f 2 -e 2 --native-frag --max-payload 1200 --fake-gen %hexgen% --fake-from-hex %hex%" start= "auto"
-sc description "GoodbyeDPI" "Служба утилиты GoodbyeDPI для обхода блокировок интернет сайтов. - Univesal"
-start /min sc start "GoodbyeDPI"
+sc delete "AntiZapret" > nul
+sc create "GoodbyeDPI" binPath="\"%~dp0%_arch%\goodbyedpi.exe\" %GBDParam%" DisplayName="AZ - KR.Corp.Ulils GoodbyeDPI" start="auto" > nul
+sc create "AntiZapret" binPath="\"%~dp0winws.exe\" %AZParam%" DisplayName="AZ - KR.Corp.Ulils AntiZapret" start="auto"  > nul
+sc description "GoodbyeDPI" "Служба UltraPlus для обхода блокировок интернета через DPI" > nul
+sc description "AntiZapret" "Служба UltraPlus для обхода блокировок интернета через DPI" > nul
+start /min sc start "GoodbyeDPI" > nul
+start /min sc start "AntiZapret" > nul
 sc query "GoodbyeDPI"
-popd
-echo;
-echo [90mСтатус выполения скрипта [0m----------------------------------------
-echo  [93mСлужба GoodbyeDPI (Univesal) успешно установлена!
-echo [0m-----------------------------------------------------------------
-echo;
+sc query "AntiZapret"
+
+echo [90m┌─ [90mСтатус выполения [90m──────────────────────────────────────────────┐
+echo [90m│  [93mСлужба [91mUltraPlus [33mАнтиРКН [93mуспешно установлена!                  [90m│
+echo [90m└─────────────────────────────────────────────────────────────────┘ 
 goto begin
+
+
+
+
 
 :run2
 cls
-echo [90mЛог выполения [0m---------------------------------------------------[91m
+    net session >nul 2>&1
+    if %errorLevel% == 0 (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo [93m  Успех: [92mПрава администратора получены.[0m
+    ) else (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo  Ошибка: [91mПрава администратора не получены.[0m
+    )
+echo [90m ─ Лог выполения  [90m────────────────────────────────────────────────[91m
 sc stop "GoodbyeDPI" > nul
 sc delete "GoodbyeDPI" > nul
-sc stop "WinDivert" > nul
-sc delete "WinDivert" > nul
-@REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -7 -e1 --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
-@REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -p -r -s -f2 -e2 -m --reverse-frag --dns-addr 77.88.8.8 --dns-port 1253 --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port 1253 --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
-sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -9 -e1 -q --max-payload 1200 --fake-gen %hexgen% --fake-from-hex %hex% --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
-@REM sc create "GoodbyeDPI" binPath= "\"%CD%\%_arch%\goodbyedpi.exe\" -f 2 -e 2 --native-frag --max-payload 1200 --fake-gen %hexgen% --fake-from-hex %hex% --blacklist \"%CD%\russia-blacklist.txt\" --blacklist \"%CD%\ketaru-blacklist.txt\"" start= "auto"
-sc description "GoodbyeDPI" "Служба утилиты GoodbyeDPI для обхода блокировок интернет сайтов. - Modify by KetaruCorp"
-start /min sc start "GoodbyeDPI"
+sc create "GoodbyeDPI" binPath="\"%~dp0%_arch%\goodbyedpi.exe\" %GBDParam%" DisplayName="AZ - KR.Corp.Ulils GoodbyeDPI" start="auto" > nul
+sc description "GoodbyeDPI" "Служба YouTubeFix для обхода блокировок интернета через DPI" > nul
+start /min sc start "GoodbyeDPI" > nul
 sc query "GoodbyeDPI"
-popd
-echo;
-echo [90mСтатус выполения скрипта [0m----------------------------------------
-echo  [93mСлужба GoodbyeDPI (Modify by KetaruCorp) успешно установлена!
-echo [0m-----------------------------------------------------------------
-echo;
+echo [90m┌─ [90mСтатус выполения [90m──────────────────────────────────────────────┐
+echo [90m│  [93mСлужба [96mYouTube [33mАнтиРКН [93mуспешно установлена!                    [90m│
+echo [90m└─────────────────────────────────────────────────────────────────┘ 
 goto begin
+
+
+
+
 
 :run3
 cls
-echo [90mЛог выполения [0m---------------------------------------------------[91m
-echo  Обновление утилиты GoodbyeDPI...
-echo [93m  Скачивание утилиты для управления репозиторием c github...
+    net session >nul 2>&1
+    if %errorLevel% == 0 (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo [93m  Успех: [92mПрава администратора получены.[0m
+    ) else (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo  Ошибка: [91mПрава администратора не получены.[0m
+    )
+echo [90m ─ Лог выполения  [90m────────────────────────────────────────────────[91m
+sc stop "AntiZapret" > nul
+sc delete "AntiZapret" > nul
+sc create "AntiZapret" binPath="\"%~dp0winws.exe\" %AZParam%" DisplayName="AZ - KR.Corp.Ulils AntiZapret" start="auto" > nul
+sc description "AntiZapret" "Служба DiscordFix для обхода блокировок интернета через DPI" > nul
+start /min sc start "AntiZapret" > nul
+sc query "AntiZapret"
+
+echo [90m┌─ [90mСтатус выполения [90m──────────────────────────────────────────────┐
+echo [90m│  [93mСлужба [96mDiscord [33mАнтиРКН [93mуспешно установлена!                    [90m│
+echo [90m└─────────────────────────────────────────────────────────────────┘ 
+goto begin
+
+
+
+
+
+:run4
+cls
+    net session >nul 2>&1
+    if %errorLevel% == 0 (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo [93m  Успех: [92mПрава администратора получены.[0m
+    ) else (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo  Ошибка: [91mПрава администратора не получены.[0m
+    )
+echo [90m ─ Лог выполения  [90m────────────────────────────────────────────────[91m
+sc stop "GoodbyeDPI" > nul
+sc delete "GoodbyeDPI" > nul
+sc query "GoodbyeDPI"
+
+echo [90m┌─ [90mСтатус выполения [90m──────────────────────────────────────────────┐
+echo [90m│  [93mСлужба [96mYouTube [33mАнтиРКН [93mуспешно удалена!                        [90m│
+echo [90m└─────────────────────────────────────────────────────────────────┘ 
+goto begin
+
+
+
+
+
+:run5
+cls
+    net session >nul 2>&1
+    if %errorLevel% == 0 (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo [93m  Успех: [92mПрава администратора получены.[0m
+    ) else (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo  Ошибка: [91mПрава администратора не получены.[0m
+    )
+echo [90m ─ Лог выполения  [90m────────────────────────────────────────────────[91m
+sc stop "AntiZapret" > nul
+sc delete "AntiZapret" > nul
+sc create "AntiZapret" binPath="\"%~dp0winws.exe\" %AZParam%" DisplayName="AZ - KR.Corp.Ulils AntiZapret" start="auto" > nul
+sc description "AntiZapret" "Служба DiscordFix для обхода блокировок интернета через DPI" > nul
+start /min sc start "AntiZapret" > nul
+sc query "AntiZapret"
+
+echo [90m┌─ [90mСтатус выполения [90m──────────────────────────────────────────────┐
+echo [90m│  [93mСлужба [96mDiscord [33mАнтиРКН [93mуспешно удалена!                        [90m│
+echo [90m└─────────────────────────────────────────────────────────────────┘ 
+goto begin
+
+
+
+
+
+:run6
+cls
+    net session >nul 2>&1
+    if %errorLevel% == 0 (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo [93m  Успех: [92mПрава администратора получены.[0m
+    ) else (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo  Ошибка: [91mПрава администратора не получены.[0m
+    )
+echo [90m┌─ [90mСтатус выполения [90m──────────────────────────────────────────────┐
+echo [90m│  [93mLauncher GoodbyeDPI запущен!
+echo [90m└─────────────────────────────────────────────────────────────────┘ 
+sc stop "GoodbyeDPI" > nul
+START "LauncherforGoodbyeDPI" "%~dp0%_arch%\Launcher for GoodbyeDPI.exe" > nul
+goto begin
+
+
+
+
+
+:run7
+cls
+    net session >nul 2>&1
+    if %errorLevel% == 0 (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo [93m  Успех: [92mПрава администратора получены.[0m
+    ) else (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo  Ошибка: [91mПрава администратора не получены.[0m
+    )
+echo [90m ─ Лог выполения  [90m────────────────────────────────────────────────[91m
+echo  Обновление списка обхода блокировок для GoodbyeDPI...
+bitsadmin /transfer blacklist https://raw.githubusercontent.com/lisikme/GoodbyeDPI-Mod-KRCorp/main/ketaru-GoodbyeDPI.txt "%CD%\ketaru-GoodbyeDPI.txt" > nul
+bitsadmin /transfer blacklist https://p.thenewone.lol/domains-export.txt "%CD%\list-GoodbyeDPI.txt" > nul
+popd
+sc stop "GoodbyeDPI" > nul
+start /min sc start "GoodbyeDPI" > nul
+sc query "GoodbyeDPI"
+popd
+echo;
+echo [90m┌─ [90mСтатус выполения [90m──────────────────────────────────────────────┐
+echo [90m│  [93mОбновление списка для [96mGoodbyeDPI [93mуспешно обновлены!                        [90m│
+echo [90m└─────────────────────────────────────────────────────────────────┘ 
+goto begin
+
+
+
+
+
+:run8
+cls
+    net session >nul 2>&1
+    if %errorLevel% == 0 (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo [93m  Успех: [92mПрава администратора получены.[0m
+    ) else (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo  Ошибка: [91mПрава администратора не получены.[0m
+    )
+echo [90m ─ Лог выполения  [90m────────────────────────────────────────────────[91m
+echo  Обновление списка обхода блокировок для AntiZapret...
+bitsadmin /transfer blacklist https://raw.githubusercontent.com/lisikme/GoodbyeDPI-Mod-KRCorp/main/ketaru-AntiZapret.txt "%CD%\ketaru-AntiZapret.txt" > nul
+popd
+sc stop "GoodbyeDPI" > nul
+start /min sc start "GoodbyeDPI" > nul
+sc query "GoodbyeDPI"
+popd
+echo;
+echo [90m┌─ [90mСтатус выполения [90m──────────────────────────────────────────────┐
+echo [90m│  [93mОбновление списка для [96mAntiZapret [93mуспешно обновлены!                        [90m│
+echo [90m└─────────────────────────────────────────────────────────────────┘ 
+goto begin
+
+
+
+
+
+:run9
+cls
+    net session >nul 2>&1
+    if %errorLevel% == 0 (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo [93m  Успех: [92mПрава администратора получены.[0m
+    ) else (
+        echo [90m ─────────────────────────────────────────────────────────────────
+        echo  Ошибка: [91mПрава администратора не получены.[0m
+    )
+echo [90m ─ Лог выполения  [90m────────────────────────────────────────────────[91m
+echo  Обновление списка обхода блокировок для AntiZapret...
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/raw/main/srv/setup.cmd', 'C:\Windows\Temp\setup.cmd')" > nul
 powershell -Command "Invoke-WebRequest https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/raw/main/srv/setup.cmd -OutFile C:\Windows\Temp\setup.cmd" > nul
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/raw/main/srv/setup.lnk', 'C:\Windows\Temp\setup.lnk')" > nul
 powershell -Command "Invoke-WebRequest https://github.com/lisikme/GoodbyeDPI-Mod-KRCorp/raw/main/srv/setup.lnk -OutFile C:\Windows\Temp\setup.lnk" > nul
-START "H5" "C:\Windows\Temp\setup.lnk" > nul
+START "Updater" "C:\Windows\Temp\setup.lnk" > nul
 exit
-
-:run4
-cls
-echo [90mЛог выполения [0m---------------------------------------------------[91m
-echo  Launcher GoodbyeDPI...
 echo;
-echo [90mСтатус выполения скрипта [0m----------------------------------------
-echo  [93mLauncher GoodbyeDPI запущен!
-echo [0m-----------------------------------------------------------------
-echo;
-sc stop "GoodbyeDPI" > nul
-START "H5" "E:\documents\GoodbyeDPI-Mod-KR.Corp\LauncherforGoodbyeDPI.lnk" > nul
-goto begin
-
-:run5
-cls
-echo [90mЛог выполения [0m---------------------------------------------------[91m
-echo  Обновление базы обхода блокировок от KetaruCorp...
-bitsadmin /transfer blacklist https://raw.githubusercontent.com/lisikme/GoodbyeDPI-Mod-KRCorp/main/retaru-blacklist.txt "%CD%\ketaru-blacklist.txt" > nul
-popd
-sc stop "GoodbyeDPI" > nul
-start /min sc start "GoodbyeDPI"
-sc query "GoodbyeDPI"
-popd
-echo;
-echo [90mСтатус выполения скрипта [0m----------------------------------------
-echo  [93mБазы обхода блокировок от KetaruCorp успешно обновлены!
-echo [0m-----------------------------------------------------------------
-echo;
-goto begin
-
-:run6
-cls
-echo [90mЛог выполения [0m---------------------------------------------------[91m
-echo  Обновление базы обхода блокировок ValdikSS...
-bitsadmin /transfer blacklist https://p.thenewone.lol/domains-export.txt "%CD%\russia-blacklist.txt" > nul
-popd
-sc stop "GoodbyeDPI" > nul
-start /min sc start "GoodbyeDPI"
-sc query "GoodbyeDPI"
-popd
-echo;
-echo [90mСтатус выполения скрипта [0m----------------------------------------
-echo  [93mБазы обхода блокировок от ValdikSS успешно обновлены!
-echo [0m-----------------------------------------------------------------
-echo;
-goto begin
-
-:run7
-cls
-echo [90mЛог выполения [0m---------------------------------------------------[91m
-sc stop "GoodbyeDPI" > nul
-sc delete "GoodbyeDPI" > nul
-sc stop "WinDivert" > nul
-sc delete "WinDivert" > nul
-sc query "GoodbyeDPI"
-popd
-echo [90mСтатус выполения скрипта [0m----------------------------------------
-echo  [93mСлужба GoodbyeDPI успешно удалена!
-echo [0m-----------------------------------------------------------------
-echo;
+echo [90m┌─ [90mСтатус выполения [90m──────────────────────────────────────────────┐
+echo [90m│  [93mОбновление списка для [96mAntiZapret [93mуспешно обновлены!                        [90m│
+echo [90m└─────────────────────────────────────────────────────────────────┘ 
 goto begin
 
 pause

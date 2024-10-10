@@ -1,0 +1,16 @@
+/=========Put sites to test in this list=========
+/
+/===Don't worry about the exact link format, script will take care of it===
+/
+/
+/===Some random googlevideo servers===
+https://rr1---sn-4axm-n8vs.googlevideo.com
+rr1---sn-gvnuxaxjvh-o8ge.googlevideo.com
+https://rr1---sn-ug5onuxaxjvh-p3ul.googlevideo.com
+https://rr1---sn-ug5onuxaxjvh-n8v6.googlevideo.com/videoplayback
+https://rr1---sn-gvnuxaxjvh-aome.googlevideo.com
+/
+/===Add more sites if necessary
+https://www.youtube.com
+x.com
+ntc.party
