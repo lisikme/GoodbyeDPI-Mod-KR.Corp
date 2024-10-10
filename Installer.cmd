@@ -21,7 +21,7 @@ set dirtemp=%appdata%\KetaruCorp\download
 set hexgen=5
 set hex=1603030135010001310303424143facf5c983ac8ff20b819cfd634cbf5143c0005b2b8b142a6cd335012c220008969b6b387683dedb4114d466ca90be3212b2bde0c4f56261a9801
 
-set blacklist=--blacklist "%~dp0list-GoodbyeDPI.txt\" --blacklist "%~dp0.txt\"
+set blacklist=--blacklist "%~dp0list-GoodbyeDPI.txt" --blacklist "%~dp0ketaru-GoodbyeDPI.txt"
 set GBDParam=-e1 --reverse-frag --wrong-chksum --fake-from-hex %hex% --fake-gen %hexgen% --set-ttl 3 -q %blacklist%
 set par_youtube=--fake-gen %hexgen% --fake-from-hex %hex% %blacklist%
 set AZParam=--wf-tcp=443-65535 --wf-udp=443-65535 ^
